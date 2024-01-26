@@ -1,6 +1,7 @@
 node_modules
 .cache
 .DS_Store
-.env
+.env*
+!.env.example
 dist/
 .DS_Store

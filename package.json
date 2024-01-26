@@ -1,5 +1,5 @@
 {
-  "name": "@mx7/simple-ott",
+  "name": "@mx7/nodejs-rnd-media-server",
   "version": "1.0.0",
   "type": "module",
   "module": "./dist/main.js",
