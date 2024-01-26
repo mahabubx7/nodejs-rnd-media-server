@@ -1,0 +1,31 @@
+{
+  "name": "@mx7/simple-ott",
+  "version": "1.0.0",
+  "type": "module",
+  "module": "./dist/main.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "tsx watch src/main",
+    "build": "tsc",
+    "tailwind:watch": "yarn tailwindcss -i ./src/tailwind.css -o ./src/assets/main.css --watch"
+  },
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.7",
+    "@typescript-eslint/eslint-plugin": "^6.19.1",
+    "@typescript-eslint/parser": "^6.19.1",
+    "autoprefixer": "^10.4.17",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.56.0",
+    "postcss": "^8.4.33",
+    "tailwindcss": "^3.4.1",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@types/dotenv": "^8.2.0",
+    "dotenv": "^16.4.1"
+  }
+}

@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.video_page {
+  @apply flex justify-center items-center 
+   p-[1rem] md:p-[2.5rem] w-full bg-gray-200 min-h-screen;
+}
+
+.container {
+  @apply sm:w-full md:w-[90%] lg:w-[85%] xl:w-[80%] flex 
+  mx-auto justify-center items-center
+  sm:h-[50vh] sm:max-h-[240px] 
+  md:h-[45vh] md:max-h-[320px] 
+  lg:h-[40vh] lg:max-h-[420px] 
+  xl:h-[36vh] xl:max-h-[560px];
+}
