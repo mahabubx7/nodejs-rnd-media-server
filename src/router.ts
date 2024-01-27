@@ -4,6 +4,7 @@ import fs from 'fs'
 import path from 'path'
 import { RenderHtml } from './render'
 import { getContentType } from './utils/media'
+// import { mkvToWebM } from './converter'
 
 const __filename = url.fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -238,6 +239,13 @@ class Router {
       }
 
       const ext = path.extname(videoPath).toLowerCase().replace('.', '')
+
+      // /*=== Check if the video is a MKV ?? ===*/
+      // if (ext === 'mkv') {
+      //   const convertedVideoPath = await mkvToWebM({ filePath: videoPath })
+      //   videoPath = path.join(__dirname, convertedVideoPath) // updated to the converted cached video
+      // }
+
       const contentType = getContentType(ext)
       if (!(contentType.length > 0)) {
         res.writeHead(400, { 'Content-Type': 'text/plain' })
@@ -248,7 +256,7 @@ class Router {
       const range = req.headers.range
       if (!range || range.length <= 1) {
         res.writeHead(200, {
-          'Content-Type': 'video/mp4',
+          'Content-Type': contentType,
           'Content-Length': stats.size,
         })
 
@@ -265,7 +273,7 @@ class Router {
           'Content-Range': `bytes ${start}-${end}/${total}`,
           'Accept-Ranges': 'bytes',
           'Content-Length': chunksize,
-          'Content-Type': 'video/mp4',
+          'Content-Type': contentType,
         }
         res.writeHead(206, head)
         videoStream.pipe(res)

@@ -94,7 +94,7 @@ async function makeFileList(
         .map(
           (file: any) => `
       <li>
-        <a href="/stream${filePath}${file}">
+        <a href="/stream${`${filePath}${file}`.replace(/\s/g, '%20')}">
         ${`<span class="lnr ${getIcon(
           file.replace(/.*\./, '').toLowerCase(),
         )}"></span>`}
