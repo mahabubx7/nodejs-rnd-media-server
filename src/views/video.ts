@@ -22,8 +22,8 @@ export default function (videoSrc: string) {
       
               data-setup="{}"
               >
-              <!-- <source src="${makeUrl}" type="video/mp4" /> -->
-              <!-- <source src="${makeUrl}" type="video/webm" /> -->
+              <source src="${makeUrl}" type="video/mp4" />
+              <source src="${makeUrl}" type="video/webm" />
               <source src="${makeUrl}" />
               <p class="vjs-no-js">
                   To view this video please enable JavaScript, and consider upgrading to a

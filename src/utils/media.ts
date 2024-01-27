@@ -29,4 +29,4 @@ const contentType: Record<string, string> = {
 }
 
 /*=== Exports ===*/
-export { getContentType }
+export { getContentType, contentType }
