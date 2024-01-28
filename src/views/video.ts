@@ -1,5 +1,6 @@
 export default function (videoSrc: string) {
   const makeUrl = `/watch${videoSrc}`
+  // const vlcUrl = openVlc(makeUrl)
 
   return `
   <!DOCTYPE html>
@@ -13,15 +14,16 @@ export default function (videoSrc: string) {
   <body>
     <main class="video_page">
     <p class="w-full text-center absolute top-[5px] left-0">
-        <button class="py-1.5 px-4 bg-orange-500 hover:bg-orange-600 transition-colors text-white rounded-md" onclick="copyToClipboard('${makeUrl}')">
+        <a class="vlc-btn py-1.5 px-4 bg-orange-500 hover:bg-orange-600 transition-colors text-white rounded-md" 
+        href="" target="_blank">
           <span class="lnr lnr-link"></span>
-          <span>Copy Stream Link</span>
-        </button>
+          <span>Open with VLC Media Player (Recommended)</span>
+        </a>
       </p>
 
 
         <div class="container">
-          <video
+           <video
               id="player"
               class="video-js vjs-layout-small"
               controls
@@ -54,46 +56,33 @@ export default function (videoSrc: string) {
         // },
       });
       
+      function openVlc(text) {
+        'use strict';
+        // status update
+        var btn = document.querySelector('.vlc-btn');
+        // Get the protocol (http or https)
+        var protocol = window.location.protocol;
+      
+        // Get the hostname (domain or IP address)
+        var hostname = window.location.hostname;
+      
+        // Get the port (defaults to 80 for http, 443 for https)
+        var port = window.location.port;
+      
+        // Construct the base address & link
+        var getPort = port ? ':' + port : '';
+        var baseUrl = protocol + '//' + hostname + '' + getPort;
+        var url = 'vlc://' + baseUrl + '' + text;
+        btn.href = url;
+        console.log('openVlc', url);
+      }
 
       player.breakpoints(true);
 
-      function copyToClipboard(text) {
-        'use strict';
-          // Get the protocol (http or https)
-        var protocol = window.location.protocol;
-    
-          // Get the hostname (domain or IP address)
-          var hostname = window.location.hostname;
-    
-          // Get the port (defaults to 80 for http, 443 for https)
-          var port = window.location.port;
-    
-          // Construct the base address
-          var getPort = port ? ":" + port : "";
-          var baseUrl = protocol + "//" + hostname + "" + getPort;
-    
-          // Create a temporary input element
-          var input = document.createElement('input');
-          input.style.position = 'fixed';
-          input.style.opacity = 0;
-          var url = baseUrl + "" + text;
-          console.log(url);
-          input.value = url;
-          document.body.appendChild(input);
-          
-          // Select the text in the input element
-          input.select();
-          input.setSelectionRange(0, 99999); // For mobile devices
-          
-          // Copy the text to the clipboard
-          document.execCommand('copy');
-          
-          // Remove the temporary input element
-          document.body.removeChild(input);
-          
-          // Provide some feedback to the user
-          alert('Stream link copied to clipboard!');
-        }
+      // openVlc('${makeUrl}')
+      document.addEventListener('DOMContentLoaded', function () {
+        openVlc('${makeUrl}')
+      })
     </script>
   </body>
   </html>
